@@ -42,6 +42,9 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'corsheaders',
     'drf_yasg',
+    'health_profile.apps.HealthProfileConfig',
+    'advice.apps.AdviceConfig',
+    'health_question.apps.HealthQuestionConfig',
 ]
 
 MIDDLEWARE = [

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
@@ -9,6 +9,17 @@ from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
 )
+from rest_framework import routers
+from health_question.views import QuestionViewSet
+from advice.views import AdviceViewSet
+from health_profile.views import ProfileViewSet
+
+
+router = routers.DefaultRouter()
+router.register(r'questions', QuestionViewSet)
+router.register(r'advices', AdviceViewSet)
+router.register(r'profiles', ProfileViewSet)
+
 
 schema_view = get_schema_view(
    openapi.Info(
@@ -30,4 +41,5 @@ urlpatterns = [
     path('swagger<format>/', schema_view.without_ui(cache_timeout=0), name='schema-json'),
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
+    path('', include(router.urls)),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
