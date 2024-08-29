@@ -13,12 +13,15 @@ from rest_framework import routers
 from health_question.views import QuestionViewSet
 from advice.views import AdviceViewSet
 from health_profile.views import ProfileViewSet
+from health_profile.views import RegisterViewSet
+
 
 
 router = routers.DefaultRouter()
 router.register(r'questions', QuestionViewSet)
 router.register(r'advices', AdviceViewSet)
 router.register(r'profiles', ProfileViewSet)
+router.register(r'auth/register', RegisterViewSet)
 
 
 schema_view = get_schema_view(
