@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'health_profile.apps.HealthProfileConfig',
     'advice.apps.AdviceConfig',
     'health_question.apps.HealthQuestionConfig',
+    'analyzer.apps.AnalyzerConfig',
 ]
 
 MIDDLEWARE = [

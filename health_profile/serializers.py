@@ -1,6 +1,22 @@
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework import serializers
 from .models import Profile
 from django.contrib.auth.models import User
+
+
+class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
+    def validate(self, attrs):
+        data = super().validate(attrs)
+        
+        # Add custom data to the token response
+        user = self.user
+        profile = Profile.objects.get(user=user)
+    
+        return {
+            "user_id": user.id,
+            "username": user.username,
+            "has_answered": profile.health_response
+        }
 
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
