@@ -14,7 +14,7 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
         return {
             "user_id": user.id,
             "username": user.username,
-            "has_answered": profile.health_response is not None,
+            "health_response": profile.health_response is not None,
         }
 
 class ProfileSerializer(serializers.ModelSerializer):
