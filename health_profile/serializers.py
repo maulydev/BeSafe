@@ -17,17 +17,24 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
             "health_response": profile.health_response,
             "profile_id": profile.id,
         }
-
-class ProfileSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Profile
-        fields = '__all__'
-
-
+        
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = '__all__'
+
+
+class ProfileSerializer(serializers.ModelSerializer):
+    first_name = serializers.CharField(source='user.first_name', read_only=True)
+    last_name = serializers.CharField(source='user.last_name', read_only=True)
+    email = serializers.CharField(source='user.email', read_only=True)
+    username = serializers.CharField(source='user.username', read_only=True)
+    class Meta:
+        model = Profile
+        fields = '__all__'
+        extra_kwargs = {'user': {'read_only': True}}
+
+
         
         
 class RegisterSerializer(serializers.ModelSerializer):
