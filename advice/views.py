@@ -4,6 +4,8 @@ from .serializers import AdviceSerializer
 
 
 
+
 class AdviceViewSet(viewsets.ModelViewSet):
     queryset = Advice.objects.all()
     serializer_class = AdviceSerializer
+    filterset_fields = ['profile__user__username']
