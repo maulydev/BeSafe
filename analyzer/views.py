@@ -4,6 +4,8 @@ from rest_framework import status
 import google.generativeai as genai
 import os
 from health_profile.models import Profile
+from advice.models import Advice
+
 
 # genai.configure(api_key=os.environ["API_KEY"])
 genai.configure(api_key="AIzaSyDW53fxktsx34AlYU3We5yrVcn-vHRQ6T4")
@@ -34,6 +36,9 @@ def process_data(request):
 
     # Process the data (replace this with your actual processing logic)
     processed_result = response.text
+    
+    if user_profile: Advice.objects.create(profile=user_profile, content=processed_result)
+    
 
     if processed_result:
         return Response({
