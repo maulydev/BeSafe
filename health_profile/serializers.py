@@ -9,7 +9,7 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
         data = super().validate(attrs)
         
         user = self.user
-        profile = Profile.objects.get(user=user)
+        profile = Profile.objects.filter(user=user).first()
     
         return {
             "user_id": user.id,

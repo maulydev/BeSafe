@@ -1,13 +1,22 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
+import google.generativeai as genai
+import os
+
+# genai.configure(api_key=os.environ["API_KEY"])
+genai.configure(api_key="AIzaSyDW53fxktsx34AlYU3We5yrVcn-vHRQ6T4")
 
 
 @api_view(['POST'])
 def process_data(request):
     data = request.data
+    model = genai.GenerativeModel("gemini-1.5-flash")
+    response = model.generate_content("Advice the user on how to improve their device usage. in  50 words", **data)
+    print(response.text)
+    
     # Process the data (replace this with your actual processing logic)
-    processed_result = "Your device usage for the day is 10 hours and compared to the average usage of 8 hours, you are 2 hours over the limit."
+    processed_result = response.text
 
     if processed_result:
         return Response({
