@@ -26,7 +26,7 @@ def process_data(request):
         "screen_time_today": data.get('screen_time_today')
     }
 
-    ai_clue = "Analyze this user information and provide a very short advice on how to improve device usage\n"
+    ai_clue = "Analyze this user information and provide a very short advice on how to improve device usage, just use the data.\n"
 
     model = genai.GenerativeModel("gemini-1.5-flash")
     response = model.generate_content(f"{ai_clue} {data}")

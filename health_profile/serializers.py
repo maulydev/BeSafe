@@ -33,8 +33,7 @@ class ProfileSerializer(serializers.ModelSerializer):
         model = Profile
         fields = '__all__'
         extra_kwargs = {'user': {'read_only': True}}
-
-
+        
         
         
 class RegisterSerializer(serializers.ModelSerializer):
