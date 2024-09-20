@@ -11,3 +11,4 @@ class Advice(models.Model):
     
     class Meta:
         verbose_name_plural = 'Advices'
+        ordering = ['-created']
