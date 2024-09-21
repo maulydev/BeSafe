@@ -7,8 +7,8 @@ from health_profile.models import Profile
 from advice.models import Advice
 
 
-# genai.configure(api_key=os.environ["API_KEY"])
-genai.configure(api_key="AIzaSyDW53fxktsx34AlYU3We5yrVcn-vHRQ6T4")
+genai.configure(api_key=os.environ["API_KEY"])
+# genai.configure(api_key="")
 
 
 @api_view(['POST'])
